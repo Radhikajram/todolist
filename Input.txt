@@ -1,0 +1,4 @@
+Dance class;Take Sahana to dance class;Open;
+Washing;Book laundry slot;Open;
+Shopping;Buy groceries; open
+Appointment;Book doctor Appointment;closed;
