@@ -1,4 +1,4 @@
-package TestJframes;
+package src;
 
 //***Provide a simple demonstration of the TodoList.
 //* Sample data is taken from the Input .txt file

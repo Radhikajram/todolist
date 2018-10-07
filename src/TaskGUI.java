@@ -26,6 +26,7 @@ public class TaskGUI {
 	private String nameOfTask;
 	private String descOfTask;
 	private String statusOfTask;
+	private int editIndex;
 	private JList<String> inputFile;
 	private JFrame frame1,frame2;
 	private JPanel firstpanel,savepanel;
@@ -69,6 +70,14 @@ public class TaskGUI {
 				addRecord();
 			          }
 			      }); 
+		 
+//edit button is pressed allow the input user to edit the value.
+		 
+		 edit.addActionListener((ActionListener) new ActionListener() { 
+		      public void actionPerformed(ActionEvent ed) {
+					editRecord();
+		      					}
+					      }); 
 			
 //Save button is pressed save the user input and go back to the previous screen
 		 save.addActionListener((ActionListener) new ActionListener() {
@@ -230,6 +239,26 @@ public class TaskGUI {
 			addPanel2frame(frame2,savepanel);
 			frameVisibility(frame2,true);
 			frameCloseoperation(frame2);
+			addStatus = true;
+		}
+// Edit the record
+		
+		private void editRecord()
+		{
+			String selectedText = inputFile.getSelectedValue();
+			editIndex = inputFile.getSelectedIndex();
+			String[] inputText = selectedText.split(";");
+			frameDispose(frame1);
+			frameVisibility(frame1,false);
+			addPanel2frame(frame2,savepanel);
+			frameVisibility(frame2,true);
+			taskt.setText(inputText[0]);
+			desct.setText(inputText[1]);
+			statust.setText(inputText[2]);
+			updateStatus = true;
+			frameCloseoperation(frame2);
+
+
 		}
 // Save record to the list
 		private void saveRecord()
@@ -238,7 +267,10 @@ public class TaskGUI {
   		  descOfTask = desct.getText();
   		  statusOfTask = statust.getText();
 
-  		  try {
+  		  if(addStatus  == true)
+  		  {
+  		  try 
+  		  {
 				demo.addRecord(nameOfTask,descOfTask,statusOfTask);
 				demo.listDisplay(firstTimeDisplay);
 			} catch (IOException e) {
@@ -247,6 +279,20 @@ public class TaskGUI {
 			}
 			frameDispose(frame2);
 			frameVisibility(frame1,true);
+  		  }
+  		  else if(updateStatus == true)
+  		  {
+  		   try
+  		   {
+  			   demo.rewriteRecord(editIndex,nameOfTask,descOfTask,statusOfTask);
+  			   demo.listDisplay(firstTimeDisplay);
+  		   } catch (IOException f) {
+  			   f.printStackTrace();
+  			  
+  		   }
+  		   		frameDispose(frame2);
+  		   		frameVisibility(frame1,true);
+  		  }
 		}
 // Exit record from the second frame
 		private void exitRecord()

@@ -1,4 +1,4 @@
-package TestJframes;
+package src;
 
 /**
  * A class to maintain an arbitrary number of Task details.
@@ -74,22 +74,12 @@ public void outputWriter() throws IOException
 	writer.close();
 }
 
-//public void rewriteOutput(String prevtaskName,String prevtaskDesc,String prevtaskStatus,String currtaskName,String currDesc,String currStatus) throws IOException
-//{
-//	
-//	
-//	for(int i=0;i<inp.size();i++)
-//	{
-//		if(inp.get(i).getTaskName().trim().equals(prevtaskName) && (inp.get(i).getTaskDescription().trim().equals(prevtaskDesc))
-//				&& (inp.get(i).getSatus().trim().equals(prevtaskDesc)))
-//		{
-//			inp.get(i).setTaskName(currtaskName);
-//			inp.get(i).setTaskDesc(currDesc);
-//			inp.get(i).setStatus(currStatus);
-//			
-//			inp.set(i, new Task(inp.get(i).getTaskName(),inp.get(i).getTaskDescription(),inp.get(i).getSatus()));
-//			
-//		}
-//	}
-//}
+// Edit the Arraylist in the particular index
+
+public void rewriteRecord(int editIndex,String taskName,String taskDesc,String taskStatus) throws IOException
+{
+	inp.set(editIndex,new Task(taskName,taskDesc,taskStatus));
+}
+
+
 }
