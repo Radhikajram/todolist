@@ -1,4 +1,6 @@
-
+/*
+ * Gives option to the user the Action to be performed on Todo List.
+ */
 import java.io.IOException;
 import java.util.*;
 import java.text.DateFormat;
@@ -16,10 +18,13 @@ private Tododemo demo;
 private Date date;
 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-public void displayOption()
+public void displayOption() throws ParseException
 {
    demo = new Tododemo();
-// Read the input File
+/*
+ *  Read the input text File
+ */
+   
   try{
         demo.inputReader();
       }catch(IOException a)
@@ -27,45 +32,56 @@ public void displayOption()
       System.out.println(" Error Reading inputfile ");
     }
 
-  System.out.println("----------------------------------------------------------------------------------");
-  System.out.println(String.format("  %65s", "                To do List          "));
-  System.out.println("-----------------------------------------------------------------------------------");
-  System.out.println(String.format("%35s","      1- Display List      "));
-  System.out.println(String.format("%35s","      2- Add New Task      "));
-  System.out.println("      3- Edit Task         ");
-  System.out.println("      4- Delete Task       ");
-  System.out.println("      5- Save & Exit       ");
-
+  
+  System.out.println("---------------------------------------------------------------------------------------------------------------------");
+  System.out.println(String.format("  %55s", "                To do List          "));
+  System.out.println("---------------------------------------------------------------------------------------------------------------------");
+  System.out.println(String.format("%45s","      1- Display List      "));
+  System.out.println(String.format("%45s","      2- Add New Task      "));
+  System.out.println(String.format("%45s","      3- Edit Task         "));
+  System.out.println(String.format("%45s","      4- Delete Task       "));
+  System.out.println(String.format("%45s","      5- Save & Exit       "));
+  System.out.println("---------------------------------------------------------------------------------------------------------------------");
   System.out.println(" Enter correct option");
   option = scanInput();
 
   while(!(setExit))
   {
-// Display the To do list task
+/*
+ *  Display the To do list task
+ */
         if(option == 1)
         {
           displayTask();
         }
 
-// Add new task to the list
+/*
+ *  Add new task to the list
+ */
         if(option == 2)
         {
           addTask();
         }
 
-// Edit the Todo List
+/*
+ *  Edit the Todo List
+ */
         if(option == 3)
         {
           editTask();
         }
 
-//Delete the task from the list
+/*
+ * Delete the task from the list
+ */
         if (option == 4)
         {
           deleteTask();
         }
 
-// Save and Exit
+/*
+ *  Save and Exit
+ */
         if(option == 5)
          {
            saveExittask();
@@ -78,15 +94,19 @@ public int scanInput()
       int i = sc.nextInt();
       return i;
     }
-    //Read the input FileReader
+    /*
+     * Read the input FileReader
+     */
 public String scanString()
     {
       Scanner sc = new Scanner(System.in);
       String line = sc.nextLine();
       return line;
     }
-// Add task
-private void addTask()
+/*
+ *  Add task
+ */
+private void addTask() throws ParseException
     {
       System.out.println("Enter the Task name   :  ");
       inputText1 = scanString();
@@ -94,10 +114,11 @@ private void addTask()
       inputText2 = scanString();
       System.out.println("Enter the Status      :  ");
       inputText3 = scanString();
-      System.out.println("Enter the TaskDate      :  ");
+      System.out.println("Enter the TaskDate(yyyy-MM-dd)      :  ");
       inputText4 = scanString();
   try{
       date = formatter.parse(inputText4);
+      System.out.println(date);
     }catch(ParseException p)
     {
       System.out.println(" Error occured while trying to covert date ");
@@ -113,8 +134,10 @@ private void addTask()
      }
     }
 
-  // edit task
-  private void editTask()
+  /*
+   *  edit task
+   */
+  private void editTask() throws ParseException
       {
         System.out.println("Enter the Task No you want  to Edit");
         taskNo = scanInput();
@@ -173,7 +196,7 @@ private void addTask()
        }
         if (option == 4)
         {
-          System.out.println("Edit the TaskDate: ");
+          System.out.println("Edit the TaskDate(yyyy-MM-dd) : ");
           inputText4 = scanString();
           changeField = 4;
           try
@@ -186,7 +209,9 @@ private void addTask()
             option = scanInput();
         }
       }
-// delete task
+/*
+ *  delete task
+ */
 private void deleteTask()
       {
         System.out.println("Enter the Task No you want  to delete ");
@@ -201,7 +226,9 @@ private void deleteTask()
             System.out.println("Enter the option");
               option = scanInput();
           }
-// Save and Exit task
+/*
+ *  Save and Exit task
+ */
 private void saveExittask()
         {
          try{
@@ -212,7 +239,9 @@ private void saveExittask()
           }
           setExit = true;
           }
-// Display Task
+/*
+ *  Display Task
+ */
 private void displayTask()
         {
           demo.displayInput();

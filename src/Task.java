@@ -1,4 +1,8 @@
 
+/***
+ * Task class has the details of the TaskName, Project Name, Task Status and Task Date.
+ * 
+ */
 import java.util.Comparator;
 import java.util.*;
 
@@ -9,14 +13,14 @@ private String taskName;
 private String  projectName;
 private String status;
 private Date taskDate;
-//private String taskDate;
+
 
 public Task(String taskName,String projectName,String status,Date taskDate)
 {
 	this.taskName = taskName;
 	this.projectName = projectName;
 	this.status = status;
-  this.taskDate = taskDate;
+   this.taskDate = taskDate;
 }
 
 /**
