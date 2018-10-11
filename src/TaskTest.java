@@ -17,7 +17,7 @@ class TaskTest{
 	 Date date;
 	 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	 Task tasktest;
-	
+	 
 	 /*
 	  * Load ArrayList with data.
 	  */

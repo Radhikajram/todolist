@@ -13,6 +13,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import javax.swing.*;
+import javax.swing.filechooser.*;
+import java.io.File;
 
 
 
@@ -21,6 +24,7 @@ public class Tododemo {
   private int option,taskNo,statusOpen = 0,statusClosed = 0;
   private boolean setExit = false;
   private String inputText3,inputText1,inputText2;
+  String filename = null;
   
   DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -32,6 +36,7 @@ public class Tododemo {
 {
   int counter = 0;
   int choice;
+ 
   
   System.out.println("Please Enter your choice - for sorting");
   System.out.println("1.Sort based on Date");
@@ -78,7 +83,20 @@ public class Tododemo {
 public void inputReader() throws IOException
 {
     Date date = null;
-		BufferedReader inpFile = new BufferedReader(new FileReader("Input.txt"));
+    	JFileChooser chooser = new JFileChooser();
+    	
+    	File file = null;
+    	int returnValue = chooser.showOpenDialog( null ) ;    	 
+    	if( returnValue == JFileChooser.APPROVE_OPTION )
+    	{
+	        file = chooser.getSelectedFile() ;
+    	}
+    	if(file != null)
+    	{
+	      filename = file.getPath();
+    	}   
+
+		BufferedReader inpFile = new BufferedReader(new FileReader(filename));
 	    String str;
       try{
 	    while((str = inpFile.readLine()) != null)
@@ -106,7 +124,7 @@ public void inputReader() throws IOException
 
 public void outputWriter() throws IOException
 {
-	BufferedWriter writer = new  BufferedWriter(new FileWriter("Input.txt"));
+	BufferedWriter writer = new  BufferedWriter(new FileWriter(filename));
 
 		for (Task out: inp)
 		{
