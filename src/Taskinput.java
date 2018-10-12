@@ -118,8 +118,8 @@ private void addTask() throws ParseException
       System.out.println("Enter the TaskDate(yyyy-MM-dd)      :  ");
       inputText4 = scanString();
   try{
-      date = formatter.parse(inputText4);
-      System.out.println(date);
+      date = formatter.parse(inputText4); 
+      
     }catch(ParseException p)
     {
       System.out.println(" Error occured while trying to covert date ");

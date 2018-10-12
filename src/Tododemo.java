@@ -74,7 +74,9 @@ public class Tododemo {
 	 	}
 	}
   	System.out.println("Number of Tasks open : "+statusOpen+" Number of Tasks Closed " + statusClosed);
-  
+  	 statusOpen = 0;
+  	statusClosed = 0;
+  	 
 }
  /*
   *@Read the input Text file and Store the details into Arraylist of Task
